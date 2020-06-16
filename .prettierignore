@@ -1,0 +1,5 @@
+.gitignore
+.prettierignore
+**/*.map
+**/*.png
+public/build/bundle.*
