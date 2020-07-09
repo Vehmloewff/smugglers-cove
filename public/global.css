@@ -86,3 +86,13 @@ button:disabled {
 .pad80 {
 	height: 80px;
 }
+
+.note {
+	border-radius: 5px;
+	background: rgba(0, 119, 255, 0.699);
+	padding: 16px;
+}
+
+div {
+	position: relative;
+}

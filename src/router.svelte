@@ -1,13 +1,13 @@
 <script context="module">
 	import { writable } from 'svelte/store';
-	import * as stores from './store';
+	import { setGo, setRoute } from './store';
 
 	const route = writable('');
 
-	stores.go = path => {
+	setGo(path => {
 		window.location.hash = path;
-	};
-	stores.route = route;
+	});
+	setRoute(route);
 
 	window.onhashchange = e => {
 		route.set(location.hash.slice(1));
@@ -20,9 +20,11 @@
 <script>
 	import Home from './routes/home.svelte';
 	import Rules from './routes/rules.svelte';
-	import UI from './ui';
+	import TeamGenerator from './routes/team-generator.svelte';
 
-	const routes = { home: Home, rules: Rules };
+	const routes = { home: Home, rules: Rules, 'team-generator': TeamGenerator };
+
+	import UI from './ui';
 
 	$: component = routes[$route];
 </script>

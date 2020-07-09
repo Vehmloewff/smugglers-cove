@@ -7,20 +7,25 @@
 <div class="backdrop">
 	<div class="filter cover" />
 	<div class="content cover">
-		{route}
-		{#if route === 'home'}
-			<div class="pad80" />
-		{:else}
-			<Nav />
-		{/if}
+		<div style="min-height: 100%">
+			{#if $route === 'home'}
+				<div class="pad80" />
+			{:else}
+				<Nav />
+			{/if}
 
-		<Router />
+			<Router />
 
-		<div class="credit">
-			Backdrop photo by
-			<a href="https://unsplash.com/@karlleephoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Karl Lee</a>
-			on
-			<a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank">Unsplash</a>
+			<div class="pad50" />
+
+			<div class="credit">
+				Backdrop photo by
+				<a href="https://unsplash.com/@karlleephoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Karl Lee</a>
+				on
+				<a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank">
+					Unsplash
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -40,7 +45,7 @@
 	}
 	.filter {
 		z-index: 1;
-		background: rgba(0, 0, 0, 0.336);
+		background: rgba(0, 0, 0, 0.5);
 	}
 	.content {
 		z-index: 2;
@@ -61,7 +66,7 @@
 	}
 
 	.content::-webkit-scrollbar {
-		width: 10px;
+		width: 5px;
 		background-color: #f5f5f5;
 	}
 
