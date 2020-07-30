@@ -1,4 +1,4 @@
-import Button from './components/button.svelte';
+import Button from './ui/button.svelte';
 
 export default {
 	Button,
