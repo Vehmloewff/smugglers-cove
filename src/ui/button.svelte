@@ -1,5 +1,8 @@
 <script>
 	import { go } from '../store';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let route = null;
 	export let href = null;
@@ -7,10 +10,11 @@
 
 	function click() {
 		if (route) go(route);
-		else if (path) {
+		else if (href) {
 			if (blank) window.open(href);
 			else window.location = href;
 		}
+		dispatch('click');
 	}
 </script>
 
@@ -20,7 +24,7 @@
 
 <style>
 	button {
-		background: rgba(0, 0, 0, 0.5);
+		background: #a46b1d;
 		border: none;
 		border-radius: 4px;
 		margin: 0;
