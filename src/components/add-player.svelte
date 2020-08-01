@@ -25,6 +25,7 @@
 				name,
 				age,
 				weight,
+				id: Date.now(),
 			});
 			return players;
 		});

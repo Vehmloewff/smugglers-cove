@@ -11,9 +11,15 @@ export function pickRandArrItem(arr) {
 	if (!arr.length) return null;
 	if (arr.length === 1) return arr[0];
 
-	return arr[getRndInteger(0, arr.length - 1)];
+	return arr[getRandInteger(0, arr.length - 1)];
 }
 
 export function getRandInteger(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function repeat(number, cb) {
+	for (let x = 0; x < number; x++) {
+		cb(x + 1);
+	}
 }
