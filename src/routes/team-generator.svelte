@@ -12,7 +12,7 @@
 	import PlayerData from '../components/player-data.svelte';
 
 	let addingPlayer = false;
-	let displaying = 'players';
+	let footerDisplaying = 'players';
 
 	let currentSection = 'drawings'; // or 'generate', 'drawing', 'player-data'
 	let drawingId = null;
@@ -31,25 +31,35 @@
 			currentSection = 'drawing';
 		}
 	}
+
+	function focusPlayers() {
+		footerDisplaying = 'players';
+	}
+
+	function focusGenerate() {
+		currentSection = 'generate';
+	}
 </script>
 
-{#if currentSection === 'drawings'}
-	<Drawings {goToDrawing} />
-{:else if currentSection === 'generate'}
-	<Generate {goToDrawing} />
-{:else if currentSection === 'drawing'}
-	<Drawing {goToDrawing} {drawingId} />
-{:else if currentSection === 'player-data'}
-	<PlayerData {goToDrawing} {drawingId} {playerIndex} />
-{/if}
+<div class="section">
+	{#if currentSection === 'drawings'}
+		<Drawings {goToDrawing} {focusGenerate} />
+	{:else if currentSection === 'generate'}
+		<Generate {goToDrawing} {focusPlayers} />
+	{:else if currentSection === 'drawing'}
+		<Drawing {goToDrawing} {drawingId} />
+	{:else if currentSection === 'player-data'}
+		<PlayerData {goToDrawing} {drawingId} {playerIndex} />
+	{/if}
+</div>
 
 <div class="footer-panel">
 	<div class="options">
-		<div class="tab" class:active={displaying === 'players'} on:click={() => (displaying = 'players')}>Players</div>
-		<div class="tab" class:active={displaying === 'log'} on:click={() => (displaying = 'log')}>Log</div>
+		<div class="tab" class:active={footerDisplaying === 'players'} on:click={() => (footerDisplaying = 'players')}>Players</div>
+		<div class="tab" class:active={footerDisplaying === 'log'} on:click={() => (footerDisplaying = 'log')}>Log</div>
 	</div>
 	<div class="footer-content">
-		{#if displaying === 'players'}
+		{#if footerDisplaying === 'players'}
 			<div class="players">
 				<div style="padding: 8px">
 					{#each $players as player}
@@ -62,7 +72,7 @@
 					<AddPlayer />
 				</div>
 			</div>
-		{:else if displaying === 'log'}
+		{:else if footerDisplaying === 'log'}
 			{#each $auditLog as item}
 				<LogItem {...item} {goToDrawing} />
 			{/each}
@@ -71,6 +81,11 @@
 </div>
 
 <style>
+	.section {
+		overflow-y: auto;
+		height: calc(100vh - calc(55px + 305px));
+	}
+
 	.footer-panel {
 		position: fixed;
 		background: rgba(0, 0, 0, 0.5);
@@ -79,6 +94,7 @@
 		left: 0;
 		height: 300px;
 		border-top: 5px solid black;
+		z-index: 50;
 	}
 
 	.options {
