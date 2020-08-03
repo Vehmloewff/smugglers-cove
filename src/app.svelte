@@ -64,5 +64,6 @@
 		position: absolute;
 		right: 10px;
 		bottom: 10px;
+		z-index: 200;
 	}
 </style>

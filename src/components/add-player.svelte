@@ -30,6 +30,10 @@
 			return players;
 		});
 		addingPlayer = false;
+
+		name = null;
+		age = null;
+		weight = null;
 	}
 </script>
 

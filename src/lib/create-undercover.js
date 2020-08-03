@@ -18,7 +18,10 @@ export default (team1, team2, team3) => {
 
 		if (undercover.find(agent => agent.id === player.id)) player.isUndercover = true;
 
-		player.buddies = buddies.find(arr => arr.find(maybeBuddy => maybeBuddy.id === player.id)).filter(buddy => buddy.id !== player.id);
+		player.buddies = buddies
+			.find(arr => arr.find(maybeBuddy => maybeBuddy.id === player.id))
+			.filter(buddy => buddy.id !== player.id)
+			.map(player => ({ name: player.name, id: player.id, age: player.age }));
 
 		return player;
 	});
@@ -43,7 +46,7 @@ function ageOrder(players) {
 function buddyOut(players) {
 	const buddies = [];
 
-	if (players.length === 1 || players.length === 2 || players.length === 3) return players;
+	if (players.length === 1 || players.length === 2 || players.length === 3) return [players];
 
 	while (players.length) {
 		const buddieTeam = [];

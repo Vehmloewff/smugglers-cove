@@ -39,6 +39,10 @@
 	function focusGenerate() {
 		currentSection = 'generate';
 	}
+
+	function goHome() {
+		currentSection = 'drawings';
+	}
 </script>
 
 <div class="section">
@@ -52,6 +56,10 @@
 		<PlayerData {goToDrawing} {drawingId} {playerIndex} />
 	{/if}
 </div>
+
+{#if currentSection !== 'drawings'}
+	<div class="cancel" on:click={goHome}>X</div>
+{/if}
 
 <div class="footer-panel">
 	<div class="options">
@@ -84,6 +92,24 @@
 	.section {
 		overflow-y: auto;
 		height: calc(100vh - calc(55px + 305px));
+	}
+
+	.cancel {
+		position: fixed;
+		top: 85px;
+		right: 30px;
+		font-size: 30px;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 4px;
+		background: rgba(163, 27, 27, 0.24);
+		user-select: none;
+		cursor: pointer;
+	}
+	.cancel:hover {
+		background: rgba(163, 27, 27, 0.534);
 	}
 
 	.footer-panel {
