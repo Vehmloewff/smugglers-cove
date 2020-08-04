@@ -120,14 +120,14 @@
 
 	.options {
 		margin-bottom: 57px;
+		padding: 0 16px;
 	}
 	.tab {
-		width: 50%;
 		float: left;
 		font-size: 20px;
 		text-align: center;
 		border-bottom: 3px solid rgba(0, 0, 0, 0);
-		padding: 10px 0;
+		padding: 10px 16px;
 		user-select: none;
 		cursor: pointer;
 	}
