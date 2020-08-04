@@ -23,3 +23,15 @@ export function repeat(number, cb) {
 		cb(x + 1);
 	}
 }
+
+export function randomizeArray(arr) {
+	arr = Array.from(arr);
+	let newArr = [];
+
+	repeat(arr.length, () => {
+		let index = getRandInteger(0, arr.length - 1);
+		newArr.push(arr[index]);
+		arr.splice(index, 1);
+	});
+	return newArr;
+}

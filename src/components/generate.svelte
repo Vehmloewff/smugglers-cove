@@ -17,7 +17,7 @@
 				...result,
 				players: playersWithRoles,
 				id,
-				name: `Drawing #${$drawings.length}`,
+				name: `Drawing #${$drawings.length + 1}`,
 			});
 			return drawings;
 		});
