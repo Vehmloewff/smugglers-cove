@@ -16,12 +16,12 @@
 
 	let currentSection = 'drawings'; // or 'generate', 'drawing', 'player-data'
 	let drawingId = null;
-	let playerIndex = null;
+	let playerId = null;
 
 	function goToDrawing(drawing, player) {
 		if (player) {
-			playerIndex = player;
-			currentSection = 'player';
+			playerId = player;
+			currentSection = 'player-data';
 		}
 		if (drawing) {
 			drawingId = drawing;
@@ -53,7 +53,7 @@
 	{:else if currentSection === 'drawing'}
 		<Drawing {goToDrawing} {drawingId} />
 	{:else if currentSection === 'player-data'}
-		<PlayerData {goToDrawing} {drawingId} {playerIndex} />
+		<PlayerData {goToDrawing} {drawingId} {playerId} />
 	{/if}
 </div>
 

@@ -50,8 +50,8 @@ function nextPortion(team1, team2, team3) {
 	sums.forEach((sum, index) => {
 		if (index === 0) return;
 
-		if (sum.sum < leastSum[0]) leastSum[0] = [sum];
-		else if (sum.sum === leastSum[0]) leastSum.push(sum);
+		if (sum.sum < leastSum[0].sum) leastSum = [sum];
+		else if (sum.sum === leastSum[0].sum) leastSum.push(sum);
 	});
 
 	return pickRandArrItem(leastSum).name;

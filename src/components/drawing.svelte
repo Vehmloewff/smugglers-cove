@@ -44,8 +44,8 @@
 	<div class="pad50" />
 
 	<div style="padding: 8px;" class="center">
-		{#each randomizeArray(drawing.players) as player}
-			<div class="player-view" on:click={() => goToDrawing(drawingId, player.id)}>{player.name}</div>
+		{#each drawing.players.sort((a, b) => b.age - a.age) as player}
+			<div class="player-view" on:click={() => setTimeout(() => goToDrawing(drawingId, player.id), 50)}>{player.name}</div>
 		{/each}
 	</div>
 {/if}
