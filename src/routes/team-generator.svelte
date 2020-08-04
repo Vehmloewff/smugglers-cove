@@ -14,22 +14,12 @@
 	let addingPlayer = false;
 	let footerDisplaying = 'players';
 
-	let currentSection = 'drawings'; // or 'generate', 'drawing', 'player-data'
+	let currentSection = 'drawings'; // or 'generate', 'drawing'
 	let drawingId = null;
-	let playerId = null;
 
-	function goToDrawing(drawing, player) {
-		if (player) {
-			playerId = player;
-			currentSection = 'player-data';
-		}
-		if (drawing) {
-			drawingId = drawing;
-		}
-
-		if (drawing && !player) {
-			currentSection = 'drawing';
-		}
+	function goToDrawing(drawing) {
+		drawingId = drawing;
+		currentSection = 'drawing';
 	}
 
 	function focusPlayers() {
@@ -52,8 +42,6 @@
 		<Generate {goToDrawing} {focusPlayers} />
 	{:else if currentSection === 'drawing'}
 		<Drawing {goToDrawing} {drawingId} />
-	{:else if currentSection === 'player-data'}
-		<PlayerData {goToDrawing} {drawingId} {playerId} />
 	{/if}
 </div>
 

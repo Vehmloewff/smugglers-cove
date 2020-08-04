@@ -1,15 +1,22 @@
 <script>
-	import { drawings } from '../store';
+	import { drawings, addLog } from '../store';
 	import { randomizeArray } from '../lib/utils';
+	import { onMount } from 'svelte';
+	import PlayerData from './player-data.svelte';
 
 	export let drawingId;
-	export let goToDrawing;
 
 	$: drawing = $drawings.find(({ id }) => id === drawingId);
 
 	function joinPlayers(players) {
 		return players.map(player => player.name).join(', ');
 	}
+
+	onMount(() => {
+		addLog(`${drawing.name} was just opened.`, drawingId);
+	});
+
+	let playerId = null;
 </script>
 
 {#if !drawing}
@@ -45,9 +52,13 @@
 
 	<div style="padding: 8px;" class="center">
 		{#each drawing.players.sort((a, b) => b.age - a.age) as player}
-			<div class="player-view" on:click={() => setTimeout(() => goToDrawing(drawingId, player.id), 50)}>{player.name}</div>
+			<div class="player-view" on:click={() => setTimeout(() => (playerId = player.id), 50)}>{player.name}</div>
 		{/each}
 	</div>
+{/if}
+
+{#if playerId}
+	<PlayerData {playerId} {drawing} remove={() => (playerId = null)} />
 {/if}
 
 <style>

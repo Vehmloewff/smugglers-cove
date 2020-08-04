@@ -1,6 +1,6 @@
 <script>
 	import UI from '../ui';
-	import { players, drawings } from '../store';
+	import { players, drawings, addLog } from '../store';
 	import { createTeams, createUndercover } from '../lib';
 
 	export let goToDrawing;
@@ -11,16 +11,19 @@
 		const playersWithRoles = createUndercover(result.team1, result.team2, result.team3);
 
 		const id = Date.now();
+		const name = `Drawing #${$drawings.length + 1}`;
 
 		drawings.update(drawings => {
 			drawings.push({
 				...result,
 				players: playersWithRoles,
 				id,
-				name: `Drawing #${$drawings.length + 1}`,
+				name,
 			});
 			return drawings;
 		});
+
+		addLog(`${name} was generated.`);
 
 		goToDrawing(id);
 	}

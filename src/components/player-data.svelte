@@ -1,12 +1,12 @@
 <script>
-	import { drawings } from '../store';
+	import { drawings, addMinorLog } from '../store';
 	import Modal from '../ui/modal.svelte';
+	import { onMount } from 'svelte';
 
 	export let playerId;
-	export let drawingId;
-	export let goToDrawing;
+	export let drawing;
+	export let remove;
 
-	$: drawing = $drawings.find(({ id }) => id === drawingId);
 	$: player = drawing.players.find(player => player.id === playerId);
 	$: buddies = getBuddies(player);
 
@@ -42,8 +42,12 @@
 		if (seconds <= 0) done();
 	}, 100);
 
+	onMount(() => {
+		addMinorLog(`Player-specific drawing information for ${player.name} was just viewed.`);
+	});
+
 	function done() {
-		goToDrawing(drawingId);
+		remove();
 		clearInterval(interval);
 	}
 </script>

@@ -18,3 +18,21 @@ auditLog.subscribe(auditLog => localStorage.setItem('auditLog', JSON.stringify(a
 
 export const drawings = writable(JSON.parse(localStorage.getItem('drawings') || `[]`) || []);
 drawings.subscribe(drawings => localStorage.setItem('drawings', JSON.stringify(drawings)));
+
+export function addLog(body, drawingId) {
+	auditLog.update(log => {
+		log.push({
+			body,
+			drawingId,
+			children: [],
+		});
+		return log;
+	});
+}
+
+export function addMinorLog(content) {
+	auditLog.update(log => {
+		log[log.length - 1].children.push(content);
+		return log;
+	});
+}
