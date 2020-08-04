@@ -6,7 +6,7 @@
 	let hovering = false;
 </script>
 
-<div class="over" on:mouseover={() => (hovering = true)} on:mouseout={(hovering = false)}>
+<div class="over" on:mouseover={() => (hovering = true)} on:mouseout={() => (hovering = false)}>
 	{name} - {age} ({weight})
 	{#if hovering}
 		<div class="popover">

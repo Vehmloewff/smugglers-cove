@@ -33,6 +33,12 @@
 	function goHome() {
 		currentSection = 'drawings';
 	}
+
+	let footerEl;
+	function scrollDown() {
+		console.log({ footerEl });
+		footerEl.scrollTop = footerEl.scrollHeight;
+	}
 </script>
 
 <div class="section">
@@ -41,7 +47,7 @@
 	{:else if currentSection === 'generate'}
 		<Generate {goToDrawing} {focusPlayers} />
 	{:else if currentSection === 'drawing'}
-		<Drawing {goToDrawing} {drawingId} />
+		<Drawing {drawingId} />
 	{/if}
 </div>
 
@@ -54,7 +60,7 @@
 		<div class="tab" class:active={footerDisplaying === 'players'} on:click={() => (footerDisplaying = 'players')}>Players</div>
 		<div class="tab" class:active={footerDisplaying === 'log'} on:click={() => (footerDisplaying = 'log')}>Log</div>
 	</div>
-	<div class="footer-content">
+	<div class="footer-content" bind:this={footerEl}>
 		{#if footerDisplaying === 'players'}
 			<div class="players">
 				<div style="padding: 8px">
@@ -69,9 +75,10 @@
 				</div>
 			</div>
 		{:else if footerDisplaying === 'log'}
-			{#each $auditLog as item}
-				<LogItem {...item} {goToDrawing} />
+			{#each $auditLog as item, index}
+				<LogItem {...item} {goToDrawing} lastOne={$auditLog.length === index + 1} {scrollDown} />
 			{/each}
+			<div class="pad20" />
 		{/if}
 	</div>
 </div>

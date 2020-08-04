@@ -7,14 +7,15 @@
 	export let drawingId;
 
 	$: drawing = $drawings.find(({ id }) => id === drawingId);
+	$: log(drawingId);
 
 	function joinPlayers(players) {
 		return players.map(player => player.name).join(', ');
 	}
 
-	onMount(() => {
+	function log() {
 		addLog(`${drawing.name} was just opened.`, drawingId);
-	});
+	}
 
 	let playerId = null;
 </script>
