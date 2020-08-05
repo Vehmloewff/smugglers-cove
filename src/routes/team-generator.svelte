@@ -63,8 +63,10 @@
 		{#if footerDisplaying === 'players'}
 			<div class="players">
 				<div style="padding: 8px">
-					{#each $players as player}
+					{#each $players.sort((a, b) => b.age - a.age) as player}
 						<Player {...player} />
+					{:else}
+						<div class="no-players nothing">No players yet!</div>
 					{/each}
 				</div>
 
@@ -76,6 +78,8 @@
 		{:else if footerDisplaying === 'log'}
 			{#each $auditLog as item, index}
 				<LogItem {...item} {goToDrawing} lastOne={$auditLog.length === index + 1} {scrollDown} />
+			{:else}
+				<div class="no-logs nothing">No logs yet!</div>
 			{/each}
 			<div class="pad20" />
 		{/if}
@@ -104,6 +108,17 @@
 	}
 	.cancel:hover {
 		background: rgba(163, 27, 27, 0.534);
+	}
+
+	.no-players {
+		padding: 20px 8px;
+		opacity: 0.8;
+	}
+	.no-logs {
+		padding: 20px 16px;
+	}
+	.nothing {
+		opacity: 0.8;
 	}
 
 	.footer-panel {
