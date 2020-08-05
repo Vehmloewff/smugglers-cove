@@ -3,6 +3,7 @@
 	import { randomizeArray } from '../lib/utils';
 	import { onMount } from 'svelte';
 	import PlayerData from './player-data.svelte';
+	import AddPlayer from './add-player.svelte';
 
 	export let drawingId;
 
@@ -14,7 +15,7 @@
 	}
 
 	function log() {
-		addLog(`${drawing.name} was just opened.`, drawingId);
+		if (drawing) addLog(`${drawing.name} was just opened.`, drawingId);
 	}
 
 	let playerId = null;
@@ -63,6 +64,13 @@
 {/if}
 
 <style>
+	.center-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+
 	.whole {
 		margin: auto;
 		max-width: 900px;

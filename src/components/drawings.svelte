@@ -5,12 +5,28 @@
 
 	export let goToDrawing;
 	export let focusGenerate;
+
+	let backup = [];
+
+	function clear() {
+		backup = $drawings;
+		$drawings = [];
+	}
+
+	function revert() {
+		$drawings = backup;
+	}
 </script>
 
-{#if $drawings.length}
+{#if $drawings.length || backup.length}
 	<div class="top container centered">
 		<h2 style="float: left; margin: 0">Drawings</h2>
 		<div style="float: right">
+			{#if $drawings.length}
+				<span class="clear" on:click={clear}>clear</span>
+			{:else}
+				<span class="clear" on:click={revert}>History deleted. UNDO</span>
+			{/if}
 			<UI.Button on:click={focusGenerate}>New</UI.Button>
 		</div>
 	</div>
@@ -33,6 +49,15 @@
 	.top {
 		padding: 20px 0;
 		overflow: auto;
+	}
+
+	.clear {
+		padding-top: 20px;
+		padding-right: 20px;
+		user-select: none;
+		cursor: pointer;
+		font-style: italic;
+		opacity: 0.7;
 	}
 
 	.drawing {
