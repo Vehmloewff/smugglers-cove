@@ -35,3 +35,11 @@ export function randomizeArray(arr) {
 	});
 	return newArr;
 }
+
+export function reverseArray(arr) {
+	let newArr = [];
+	repeat(arr.length, () => {
+		newArr.push(...arr.slice(arr.length - 1));
+	});
+	return newArr;
+}

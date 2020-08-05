@@ -36,7 +36,6 @@
 
 	let footerEl;
 	function scrollDown() {
-		console.log({ footerEl });
 		footerEl.scrollTop = footerEl.scrollHeight;
 	}
 </script>

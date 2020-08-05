@@ -40,7 +40,7 @@
 
 {#if showingChildren}
 	{#each children as log}
-		<div class="log">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{log}</div>
+		<div class="log">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{log}</div>
 	{/each}
 {/if}
 
