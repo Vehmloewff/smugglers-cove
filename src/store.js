@@ -14,7 +14,10 @@ export const players = writable(JSON.parse(localStorage.getItem('players') || `[
 players.subscribe(players => localStorage.setItem('players', JSON.stringify(players)));
 
 export const auditLog = writable(JSON.parse(localStorage.getItem('auditLog') || `[]`) || []);
-auditLog.subscribe(auditLog => localStorage.setItem('auditLog', JSON.stringify(auditLog)));
+auditLog.subscribe(auditLog => {
+	if (auditLog.length > 100) auditLog.shift();
+	localStorage.setItem('auditLog', JSON.stringify(auditLog));
+});
 
 export const drawings = writable(JSON.parse(localStorage.getItem('drawings') || `[]`) || []);
 drawings.subscribe(drawings => localStorage.setItem('drawings', JSON.stringify(drawings)));
