@@ -38,6 +38,10 @@
 </script>
 
 <UI.Button on:click={click}>Add Player</UI.Button>
+{#if $players.length}
+	<span class="count">{$players.length} player{$players.length === 1 ? '' : 's'} so far.</span>
+{/if}
+
 {#if addingPlayer}
 	<UI.Modal onCancel={cancel}>
 		<div class="container">
@@ -57,3 +61,10 @@
 		</div>
 	</UI.Modal>
 {/if}
+
+<style>
+	.count {
+		opacity: 0.8;
+		padding: 16px;
+	}
+</style>
