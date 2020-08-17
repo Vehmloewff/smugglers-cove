@@ -64,7 +64,7 @@
 			<div class="players">
 				<div style="padding: 8px">
 					{#each $players.sort((a, b) => b.age - a.age) as player}
-						<Player {...player} />
+						<Player age={player.age} name={player.name} weight={player.weight} id={player.id} />
 					{:else}
 						<div class="no-players nothing">No players yet!</div>
 					{/each}

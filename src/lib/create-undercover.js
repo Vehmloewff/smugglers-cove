@@ -16,7 +16,12 @@ export default (team1, team2, team3) => {
 	return [...team1, ...team2, ...team3].map(player => {
 		const undercover = [...undercover1, ...undercover2, ...undercover3];
 
-		if (undercover.find(agent => agent.id === player.id)) player.isUndercover = true;
+		// Reset the undercover positions
+		player.isUndercover = false;
+
+		if (undercover.find(agent => agent.id === player.id)) {
+			player.isUndercover = true;
+		}
 
 		player.buddies = buddies
 			.find(arr => arr.find(maybeBuddy => maybeBuddy.id === player.id))
@@ -47,18 +52,25 @@ function ageOrder(players) {
 function buddyOut(players) {
 	const buddies = [];
 
-	if (players.length === 1 || players.length === 2 || players.length === 3) return [players];
+	if (players.length === 1 || players.length === 2 || players.length === 3) {
+		return [players];
+	}
 
 	while (players.length) {
 		const buddieTeam = [];
 
+		const push = () => {
+			buddieTeam.push(players[0]);
+			players = players.slice(1);
+		};
+
 		if (players.length === 3) {
-			buddieTeam.push(players.shift());
-			buddieTeam.push(players.shift());
-			buddieTeam.push(players.shift());
+			push();
+			push();
+			push();
 		} else {
-			buddieTeam.push(players.shift());
-			buddieTeam.push(players.shift());
+			push();
+			push();
 		}
 
 		buddies.push(buddieTeam);

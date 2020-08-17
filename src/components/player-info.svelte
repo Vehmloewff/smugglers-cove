@@ -5,8 +5,6 @@
 	export let name;
 	export let age;
 	export let weight;
-
-	$: console.log(name);
 </script>
 
 <div>
