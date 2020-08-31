@@ -15,6 +15,10 @@
 		<!-- Prank -->
 		<style>
 			.prank {
+
+			}
+			
+			.prank img {
 				position: fixed;
 				top: 0;
 				right: 0;
@@ -23,10 +27,6 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-			}
-			
-			.prank img {
-				height: 100vh;
 			}
 		</style>
 		
@@ -49,7 +49,7 @@
 				if (e.keyCode === 27) loadJS();	
 			})
 			
-			window.addEventListener('load', function() {
+			document.addEventListener('DOMContentLoaded', function() {
 				var img = document.querySelector('.prank img')
 				var loader = document.querySelector('.prank .loader')
 
