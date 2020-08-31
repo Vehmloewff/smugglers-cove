@@ -34,13 +34,15 @@
 			var didLoadJS = false;
 			
 			function loadJS() {
-				if (didLoadJs) return;
+				if (didLoadJS) return;
+				
+				document.getElementsByClassName('prank')[0].remove()
 				
 				var script = document.createElement('script')
 				script.src = '/build/bundle.js'
 				document.head.appendChild(script)
 				
-				didLoadJs = true
+				didLoadJS = true
 			}
 			
 			document.addEventListener('keyup', function(e) {
