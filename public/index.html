@@ -49,12 +49,14 @@
 				if (e.keyCode === 27) loadJS();	
 			})
 			
-			var img = document.querySelector('.prank img')
-			var loader = document.querySelector('.prank .loader')
-			
-			img.addEventListener('load', function() {
-				loader.remove()
-				img.style.opacity = 1
+			window.addEventListener('load', function() {
+				var img = document.querySelector('.prank img')
+				var loader = document.querySelector('.prank .loader')
+
+				img.addEventListener('load', function() {
+					loader.remove()
+					img.style.opacity = 1
+				})
 			})
 		</script>
 	</head>
