@@ -6,24 +6,52 @@
 
 		<title>Smugglers Cove</title>
 
-<!-- 		<link rel="icon" type="image/png" href="/favicon.png" /> -->
-<!-- 		<link rel="stylesheet" href="/global.css" /> -->
-<!-- 		<link rel="stylesheet" href="/build/bundle.css" /> -->
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="stylesheet" href="/global.css" />
+ 		<link rel="stylesheet" href="/build/bundle.css" />
 
 <!-- 		<script defer src="/build/bundle.js"></script> -->
+		
+		<!-- Prank -->
 		<style>
-			img {
+			.prank {
 				position: fixed;
 				top: 0;
-				left: 0;
 				right: 0;
+				left: 0;
 				bottom: 0;
-				z-index: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.prank img {
+/* 				height: 100vh; */
 			}
 		</style>
+		
+		<script>
+			var didLoadJS = false;
+			
+			function loadJS() {
+				if (didLoadJs) return;
+				
+				var script = document.createElement('script')
+				script.src = '/build/bundle.js'
+				document.head.appendChild(script)
+				
+				didLoadJs = true
+			}
+			
+			document.addEventListener('keyup', e = > {
+				if (e.keyCode === 27) loadJS();	
+			})
+		</script>
 	</head>
 
 	<body>
-		<img src="https://lh4.googleusercontent.com/VCZx_w3c-W99yFJqG6AMtDi6UWi6tZEofEZhKHYbkkUnbmK-QytP_CMAbYvF9oetobhjNXetj4wD_ReinzAo=w2940-h6366-rw"/>
+		<div class="prank">
+			<img src="https://lh4.googleusercontent.com/VCZx_w3c-W99yFJqG6AMtDi6UWi6tZEofEZhKHYbkkUnbmK-QytP_CMAbYvF9oetobhjNXetj4wD_ReinzAo=w2940-h6366-rw"/>
+		</div>
 	</body>
 </html>
