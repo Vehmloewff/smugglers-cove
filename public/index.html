@@ -48,12 +48,21 @@
 			document.addEventListener('keyup', function(e) {
 				if (e.keyCode === 27) loadJS();	
 			})
+			
+			var img = document.querySelector('.prank img')
+			var loader = document.querySelector('.prank .loader')
+			
+			img.addEventListener('load', function() {
+				loader.remove()
+				img.style.opacity = 1
+			})
 		</script>
 	</head>
 
 	<body>
 		<div class="prank">
-			<img src="/prank.JPG"/>
+			<img src="/prank.JPG"/ style="opacity: 0">
+			<div class="loader">Loading...</div>
 		</div>
 	</body>
 </html>
